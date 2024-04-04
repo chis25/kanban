@@ -17,11 +17,11 @@ class BoardPolicy
         return $user->hasPermission('module_kanban_kanban_boards_show');
     }
     public function edit(User $user, Board $board)
-    {
-        return $user->hasPermission('module_kanban_kanban_boards_edit');
+    { 
+        return $user->hasPermission('module_kanban_kanban_boards_edit') && $board->owner()->id === $user->id;
     }
     public function delete(User $user, Board $board)
     {
-        return $user->hasPermission('module_kanban_kanban_boards_delete');
+        return $user->hasPermission('module_kanban_kanban_boards_delete') && $board->owner()->id === $user->id;
     }
 }

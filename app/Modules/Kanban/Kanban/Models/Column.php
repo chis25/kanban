@@ -6,6 +6,7 @@ class Column extends Model
     protected $table = 'module_kanban_kanban_columns';
     protected $fillable =[
         'title',
+        'color',
         'board_id',
     ];
     public function board () {

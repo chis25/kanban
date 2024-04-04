@@ -6,7 +6,9 @@ class BoardService
 {
     public function store(Request $request): Board
     {
-        return Board::create($request->validated());
+        $board = Board::create($request->validated());
+        $board->users()->attach(auth()->user()->id, ['is_owner' => true]);
+        return $board;
     }
     public function update(Request $request, Board $board): bool
     {

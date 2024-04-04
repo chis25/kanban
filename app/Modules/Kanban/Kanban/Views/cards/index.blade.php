@@ -6,14 +6,16 @@
 <div class="row">
     <div class="col">
         @foreach($cards as $card)
-        <a class="btn btn-info" href="{{ route('kanban.kanban.cards.show', compact('card')) }}">{{$card->title}}</a>
+        <div style="background-color:{{$card->column->color}}; padding:8px;margin:4px;">
+            <h4>
+                <a href="{{ route('kanban.kanban.cards.show', compact('card')) }}">{{$card->title}}</a>
+                <hr>
+            </h4>
+            <pre>{{$card->task}}</pre>
+        </div>
+
         <br><br>
         @endforeach
-    </div>
-    <div class="col-3">
-        <div class="list-group">
-            <a class="list-group-item" href="{{ route('kanban.kanban.cards.create') }}">Добавить</a>
-        </div>
     </div>
 </div>
 @endsection

@@ -14,7 +14,7 @@
         </div>
         @endforeach
         @endif
-        <form action="{{route('kanban.kanban.cards.store')}}" method="POST">
+        <form action="{{route('kanban.kanban.cards.store', compact('board', 'column'))}}" method="POST">
             @csrf
             @include('modules_kanban_kanban::cards.components.form')
             <br>

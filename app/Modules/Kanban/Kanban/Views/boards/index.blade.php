@@ -6,7 +6,9 @@
 <div class="row">
     <div class="col">
         @foreach($boards as $board)
-        <a class="btn btn-info" href="{{ route('kanban.kanban.boards.show', compact('board')) }}">{{$board->title}}</a>
+        <a class="btn btn-info" href="{{ route('kanban.kanban.boards.show', compact('board')) }}">{{$board->title}} [Владелец: {{$board->owner()->name}}]</a>
+        <br>
+        
         <br><br>
         @endforeach
     </div>

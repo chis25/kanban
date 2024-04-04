@@ -2,13 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Modules\Kanban\Kanban\Controllers\ColumnController;
-use App\Modules\Kanban\Kanban\Models\Board;
-use App\Modules\Kanban\Kanban\Models\Column;
 
 Route::prefix('kanban/columns')->name('kanban.kanban.columns.')->controller(ColumnController::class)->group(function () {
-    Route::get('', 'index')->name('index')->can('index', Column::class);
-    Route::get('create/board/id{board}', 'create')->name('create')->whereNumber('board')->can('create', Board::class);
-    Route::post('store/board/id{board}', 'store')->name('store')->whereNumber('board')->can('create', Board::class);
+    Route::get('create/board/id{board}', 'create')->name('create')->whereNumber('board')->can('edit', 'board');
+    Route::post('store/board/id{board}', 'store')->name('store')->whereNumber('board')->can('edit', 'board');
     Route::prefix('id{column}')->group(function () {
         Route::get('', 'show')->name('show')->whereNumber('column')->can('show', 'column');
         Route::get('edit', 'edit')->name('edit')->whereNumber('column')->can('edit', 'column');

@@ -9,6 +9,7 @@ return new class extends Migration
         Schema::create('module_kanban_kanban_columns', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
+            $table->string('color');
             $table->foreignId('board_id')->constrained('module_kanban_kanban_boards')->cascadeOnDelete();
             $table->timestamps();
         });

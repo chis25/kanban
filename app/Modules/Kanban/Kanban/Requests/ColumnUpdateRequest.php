@@ -7,6 +7,7 @@ class ColumnUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required'],
+            'color' => ['required'],
         ];
     }
 }

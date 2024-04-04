@@ -7,6 +7,8 @@ class CardUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required'],
+            'task' => ['required'],
+            'column_id' => ['required'],
         ];
     }
 }

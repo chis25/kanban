@@ -7,6 +7,7 @@ class ColumnStoreRequest extends FormRequest
     {
         return [
             'title' => ['required'],
+            'color' => ['required'],
         ];
     }
 }

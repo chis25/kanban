@@ -9,6 +9,7 @@ return new class extends Migration
         Schema::create('module_kanban_kanban_cards', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
+            $table->string('task');
             $table->foreignId('column_id')->constrained('module_kanban_kanban_columns')->cascadeOnDelete();
             $table->timestamps();
         });

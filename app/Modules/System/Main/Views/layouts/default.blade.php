@@ -19,11 +19,6 @@
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        @guest
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Вход</a>
-                        </li>
-                        @endguest
                         @can('index', App\Modules\System\Main\Models\User::class)
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('system.main.users.index') }}">Пользователи</a>
@@ -39,6 +34,15 @@
                             <a class="nav-link active" aria-current="page" href="{{ route('kanban.kanban.boards.index') }}">КАНБАН</a>
                         </li>
                         @endcan
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Вход</a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">Выход</a>
+                        </li>
+                        @endguest
                     </ul>
                 </div>
             </div>

@@ -14,5 +14,7 @@ Route::prefix('kanban/boards')->name('kanban.kanban.boards.')->controller(BoardC
         Route::patch('update', 'update')->name('update')->whereNumber('board')->can('edit', 'board');
         Route::get('delete', 'delete')->name('delete')->whereNumber('board')->can('delete', 'board');
         Route::delete('destroy', 'destroy')->name('destroy')->whereNumber('board')->can('delete', 'board');
+        Route::get('users', 'users_edit')->name('users.edit')->whereNumber('board')->can('edit', 'board');
+        Route::patch('users', 'users_update')->name('users.update')->whereNumber('board')->can('edit', 'board');
     });
 });
