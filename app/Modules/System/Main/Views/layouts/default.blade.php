@@ -28,8 +28,15 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('system.main.users.index') }}">Пользователи</a>
                         </li>
+                        @endcan
+                        @can('index', App\Modules\System\Main\Models\Role::class)
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('system.main.roles.index') }}">Роли</a>
+                        </li>
+                        @endcan
+                        @can('index', App\Modules\Kanban\Kanban\Models\Board::class)
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('kanban.kanban.boards.index') }}">КАНБАН</a>
                         </li>
                         @endcan
                     </ul>
