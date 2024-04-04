@@ -1,25 +1,24 @@
 <?php
+
 namespace App\Modules\Kanban\Kanban\Controllers;
+
 use App\Http\Controllers\Controller;
+use App\Modules\Kanban\Kanban\Models\Board;
 use App\Modules\Kanban\Kanban\Models\Column;
 use App\Modules\Kanban\Kanban\Requests\ColumnStoreRequest;
 use App\Modules\Kanban\Kanban\Requests\ColumnUpdateRequest;
 use App\Modules\Kanban\Kanban\Services\ColumnService;
+
 class ColumnController extends Controller
 {
-    public function index()
+    public function create(Board $board)
     {
-        $columns = Column::all();
-        return view('modules_kanban_kanban::columns.index', compact('columns'));
+        return view('modules_kanban_kanban::columns.create', compact('board'));
     }
-    public function create()
+    public function store(ColumnStoreRequest $request, ColumnService $service, Board $board)
     {
-        return view('modules_kanban_kanban::columns.create');
-    }
-    public function store(ColumnStoreRequest $request, ColumnService $service)
-    {
-        $column = $service->store($request);
-        return redirect()->route('kanban.kanban.columns.show', compact('column'));
+        $column = $service->store($request, $board);
+        return redirect()->route('kanban.kanban.boards.show', compact('board'));
     }
     public function show(Column $column)
     {
@@ -32,7 +31,8 @@ class ColumnController extends Controller
     public function update(ColumnUpdateRequest $request, ColumnService $service, Column $column)
     {
         $service->update($request, $column);
-        return redirect()->route('kanban.kanban.columns.show', compact('column'));
+        $board = $column->board;
+        return redirect()->route('kanban.kanban.boards.show', compact('board'));
     }
     public function delete(Column $column)
     {
@@ -41,6 +41,7 @@ class ColumnController extends Controller
     public function destroy(Column $column)
     {
         $column->delete();
-        return redirect()->route('kanban.kanban.columns.index');
+        $board = $column->board;
+        return redirect()->route('kanban.kanban.boards.show', compact('board'));
     }
-} 
+}
